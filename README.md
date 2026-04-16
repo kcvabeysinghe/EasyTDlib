@@ -4,11 +4,13 @@
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
 ![TDLib](https://img.shields.io/badge/TDLib-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
-![License](https://img.shields.io/badge/License-BSL--1.0-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-A **pure Kotlin, ready-to-use boilerplate** for building Android Telegram clients using TDLib — no C++, no CMake, no NDK headaches.
+A **Kotlin-first, ready-to-use boilerplate** for building Android Telegram clients using TDLib — no C++, no CMake, no NDK headaches.
 
 Configuring TDLib for Android is notoriously painful. **EasyTDLib** skips all of that by providing a perfectly pre-configured Android Studio project with working JNI bindings, a complete authentication flow, and a functional chat list — so you can focus entirely on building your app's UI and features.
+
+> **Note on GitHub Language Stats:** GitHub reports this repo as mostly Java due to `TdApi.java` — TDLib's auto-generated API bindings (100,000+ lines). All application code is written in pure Kotlin.
 
 ---
 
@@ -18,7 +20,7 @@ Configuring TDLib for Android is notoriously painful. **EasyTDLib** skips all of
 - ✅ Pre-compiled `.so` binaries included and ready
 - ✅ Full authentication flow — Phone → OTP → 2FA → Ready
 - ✅ Chat list loading with avatar image downloading
-- ✅ Logout and client reboot handled automatically
+- ✅ Logout and TDLib client reboot handled automatically
 - ✅ Clean `StateFlow`-based architecture (Kotlin Coroutines)
 - ✅ Built with Jetpack Compose (Material 3, dark theme)
 
@@ -35,8 +37,8 @@ Configuring TDLib for Android is notoriously painful. **EasyTDLib** skips all of
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/kcvabeysinghe/EasyTDLib.git
-cd EasyTDLib
+git clone https://github.com/kcvabeysinghe/EasyTDlib.git
+cd EasyTDlib
 ```
 
 ### Step 2 — Get Your Telegram API Credentials
@@ -50,8 +52,8 @@ cd EasyTDLib
 Open `app/src/main/java/com/example/easytdlib/engine/TelegramManager.kt` and replace the placeholders:
 
 ```kotlin
-private val apiId   = 0          // Replace with your api_id
-private val apiHash = "YOUR_API_HASH"  // Replace with your api_hash
+private val apiId   = 0                 // Replace with your api_id
+private val apiHash = "YOUR_API_HASH"   // Replace with your api_hash
 ```
 
 > ⚠️ **Never commit your real API credentials to a public repository.**
@@ -69,15 +71,15 @@ Open the project in Android Studio, let Gradle sync, then hit **Run**. That's it
 app/src/main/
 ├── java/com/example/easytdlib/
 │   ├── engine/
-│   │   └── TelegramManager.kt     # Core TDLib engine — auth, chat loading, file downloads
+│   │   └── TelegramManager.kt      # Core TDLib engine — auth, chat loading, file downloads
 │   ├── ui/
 │   │   ├── components/
-│   │   │   └── ChatListItem.kt    # Single chat row with avatar
+│   │   │   └── ChatListItem.kt     # Single chat row with avatar
 │   │   └── screens/
-│   │       └── ChatListScreen.kt  # Chat list with logout
-│   └── MainActivity.kt            # Auth router (phone → code → 2FA → chat list)
+│   │       └── ChatListScreen.kt   # Chat list with logout
+│   └── MainActivity.kt             # Auth router (phone → code → 2FA → chat list)
 └── jniLibs/
-    ├── arm64-v8a/                 # Pre-compiled TDLib .so binaries
+    ├── arm64-v8a/                  # Pre-compiled TDLib .so binaries
     ├── armeabi-v7a/
     ├── x86/
     └── x86_64/
@@ -91,7 +93,7 @@ EasyTDLib handles the hard part. Here's what's left for you:
 
 - 💬 Individual chat / message screen
 - ✉️ Sending messages
-- 🖼️ Media (photos, videos, files)
+- 🖼️ Media handling (photos, videos, files)
 - 🔔 Push notifications
 - 🎨 Your own custom UI & theme
 - ⚙️ Settings screen
@@ -100,7 +102,7 @@ EasyTDLib handles the hard part. Here's what's left for you:
 
 ## 🔄 Rename the Package
 
-This template uses `com.example.easytdlib` as a universally recognized placeholder. Before publishing your own app, rename it:
+This template uses `com.example.easytdlib` as a universally recognized placeholder that is also blocked by Google Play — which forces you to choose a unique package name before publishing. To rename it:
 
 1. In Android Studio, select the `app` folder
 2. Press `Ctrl + Shift + R` (Replace in Files)
@@ -126,7 +128,7 @@ This template uses `com.example.easytdlib` as a universally recognized placehold
 - Pre-compiled TDLib binaries sourced from [TGX-Android/tdlib](https://github.com/TGX-Android/tdlib) — licensed under **BSL-1.0**
 - [TDLib](https://github.com/tdlib/td) by Telegram — licensed under **BSL-1.0**
 
-The BSL-1.0 license text is included in this repository under `THIRD_PARTY_LICENSES.txt`.
+The full BSL-1.0 license text is included in this repository under [`THIRD_PARTY_LICENSES.txt`](THIRD_PARTY_LICENSES.txt).
 
 ---
 
@@ -142,4 +144,4 @@ The pre-compiled TDLib binaries included in `jniLibs/` are sourced from [TGX-And
 
 If this saved you hours of TDLib configuration pain, consider leaving a ⭐ on the repo — it helps other developers find it!
 
-Found a bug or have a suggestion? Open an [Issue](https://github.com/kcvabeysinghe/EasyTDLib/issues).
+Found a bug or have a suggestion? Open an [Issue](https://github.com/kcvabeysinghe/EasyTDlib/issues).
